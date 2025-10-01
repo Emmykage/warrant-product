@@ -3,6 +3,7 @@ import { loginUser, registerUser } from '../actions/auth'
 
 const initialState = {
   user: null,
+  accessToken: null,
   logged: false,
   loading: true,
 }
@@ -11,10 +12,17 @@ const AuthSlice = createSlice({
   initialState,
   name: 'auth',
   reducers: {
-    resetUser: (state) => {
+    getAccessToken: (state, action) => {
       return {
         ...state,
-        user: {},
+        accessToken: action.payload ?? localStorage.getItem('warrantIT'),
+      }
+    },
+    logOut: (state) => {
+      localStorage.removeItem('warrantIT')
+      return {
+        ...state,
+        accessToken: null,
       }
     },
   },
@@ -47,10 +55,25 @@ const AuthSlice = createSlice({
           user: action.payload.data,
           logged: true,
           loading: false,
+          accessToken: action.payload.accessToken,
+        }
+      })
+      .addCase(loginUser.rejected, (state) => {
+        return {
+          ...state,
+          logged: false,
+          loading: false,
+        }
+      })
+      .addCase(loginUser.pending, (state) => {
+        return {
+          ...state,
+          logged: false,
+          loading: true,
         }
       })
   },
 })
 
 export default AuthSlice.reducer
-export const { resetUser } = AuthSlice.actions
+export const { getAccessToken, logOut } = AuthSlice.actions

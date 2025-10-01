@@ -12,6 +12,8 @@ export default function ProductDetail() {
   const { id } = useParams() // product id from route
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const { accessToken, user } = useSelector((state) => state.auth)
+
   const { product, loading } = useSelector((state) => state.products)
   const [delLoading, setDelLoading] = useState(false)
   const dispatch = useDispatch()
@@ -98,20 +100,24 @@ export default function ProductDetail() {
                 >
                   ← Back
                 </button>
-                <button
-                  onClick={() => {
-                    setIsModalOpen(true)
-                  }}
-                  className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition"
-                >
-                  Edit Product
-                </button>
-                <button
-                  onClick={handleDel}
-                  className="bg-error bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
-                >
-                  {delLoading ? 'deleting...' : 'Delete Product'}
-                </button>
+                {accessToken && (
+                  <>
+                    <button
+                      onClick={() => {
+                        setIsModalOpen(true)
+                      }}
+                      className="bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary-dark transition"
+                    >
+                      Edit Product
+                    </button>
+                    <button
+                      onClick={handleDel}
+                      className="bg-error bg-red-900 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"
+                    >
+                      {delLoading ? 'deleting...' : 'Delete Product'}
+                    </button>
+                  </>
+                )}
               </div>
             </div>
           </div>

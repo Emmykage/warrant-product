@@ -1,5 +1,4 @@
-import React, { useState } from 'react'
-import { Button, Modal } from 'antd'
+import { Modal } from 'antd'
 const AppModal = ({ children, isModalOpen, setIsModalOpen, handleCancel }) => {
   const handleOk = () => {
     setIsModalOpen(false)
