@@ -11,15 +11,9 @@ export const registerUser = createAsyncThunk('REGISTER_USER', async (data, { rej
 
     return result
   } catch (error) {
-    console.log(error)
+    const message = error?.response?.data?.message ?? error?.message ?? 'SOmething went wrong'
 
-    const message = error.response.data.message
-
-    if (error.response) {
-      return rejectWithValue({ message: message })
-    }
-
-    return rejectWithValue({ message: 'something went wrong' })
+    return rejectWithValue({ message: message })
   }
 })
 
@@ -34,12 +28,9 @@ export const loginUser = createAsyncThunk('LOG_USER', async (data, { rejectWithV
     localStorage.setItem('warrantIT', accessToken)
     return result
   } catch (error) {
-    const message = error.response.data.message
+    console.log(error)
+    const message = error?.response?.data?.message ?? error?.message ?? 'SOmething went wrong'
 
-    if (error.response) {
-      return rejectWithValue({ message: message })
-    }
-
-    return rejectWithValue({ message: 'something went wrong' })
+    return rejectWithValue({ message: message })
   }
 })

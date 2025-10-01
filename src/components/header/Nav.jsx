@@ -9,7 +9,7 @@ import LoginSetUp from '../loginSetUp/LoginSetUp'
 const Nav = () => {
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
-  const { accessToken, user } = useSelector((state) => state.auth)
+  const { accessToken } = useSelector((state) => state.auth)
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
 
@@ -30,7 +30,7 @@ const Nav = () => {
       <header className="bg-white shadow-md sticky top-0 z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
           <NavLink to={'/'}>
-            <h1 className="text-2xl font-bold text-blue-600">ProductHub</h1>
+            <h1 className="text-2xl font-bold text-blue-600">WarrantyIT</h1>
           </NavLink>
 
           <nav className="hidden md:flex space-x-6 text-gray-700 font-medium">

@@ -24,7 +24,7 @@ const LoginSetUp = ({ isModalOpen, setIsModalOpen }) => {
         setIsModalOpen(false)
       })
       .catch((err) => {
-        toast(err?.message || 'failed to Sign in', { type: 'error' })()
+        toast(err?.message || 'failed to Sign in', { type: 'error' })
       })
       .finally(() => {
         setTimeout(() => {
