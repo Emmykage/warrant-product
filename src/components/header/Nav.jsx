@@ -29,12 +29,10 @@ const Nav = () => {
     <>
       <header className="bg-white shadow-md sticky top-0 z-10">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
-          {/* Logo */}
           <NavLink to={'/'}>
             <h1 className="text-2xl font-bold text-blue-600">ProductHub</h1>
           </NavLink>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex space-x-6 text-gray-700 font-medium">
             <NavLink to="/" className="hover:text-blue-600 transition">
               Home
