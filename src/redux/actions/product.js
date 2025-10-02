@@ -17,10 +17,8 @@ export const createProduct = createAsyncThunk(
 
       return result.data
     } catch (error) {
-      if (error.response) {
-        return rejectWithValue({ message: error.response.data })
-      }
-      return rejectWithValue({ message: 'Something went wrong' })
+      const message = error.response.data.message ?? error?.message ?? 'Something went wrong'
+      return rejectWithValue({ message: message })
     }
   }
 )
