@@ -1,4 +1,4 @@
-# ProductHub – Fullstack Test Project
+# WarrantyIT – Fullstack Test Project
 
 This project is a simple **fullstack application** built with **React (frontend)** and **Node.js + Express + PostgreSQL (backend)**.  
 It demonstrates user authentication, product management, and integration of styled UI components.
