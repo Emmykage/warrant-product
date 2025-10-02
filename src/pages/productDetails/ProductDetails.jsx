@@ -7,12 +7,13 @@ import { delProduct, getProduct } from '../../redux/actions/product'
 import ProductForm from '../productForm/ProductForm'
 import dateFormater from '../../utils/dateFormat'
 import { nairaFormat } from '../../utils/nairaFormat'
+import Loader from '../../components/loader/Loader'
 
 export default function ProductDetail() {
   const { id } = useParams() // product id from route
   const navigate = useNavigate()
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const { accessToken, user } = useSelector((state) => state.auth)
+  const { accessToken } = useSelector((state) => state.auth)
 
   const { product, loading } = useSelector((state) => state.products)
   const [delLoading, setDelLoading] = useState(false)
@@ -36,13 +37,14 @@ export default function ProductDetail() {
       })
   }
 
-  console.log(product)
-
   return (
     <>
       <div className="min-h-screen  bg-background ">
         {loading ? (
-          <h2>Loading...</h2>
+          <h2 className="flex justify-center h-96 items-center">
+            {' '}
+            <Loader size="large" />
+          </h2>
         ) : (
           <div className="max-w-4xl mx-auto bg-surface mt-10 shadow-lg rounded-2xl overflow-hidden">
             <img
@@ -80,11 +82,11 @@ export default function ProductDetail() {
                   <p className="font-semibold text-text">Status:</p>
                   <span
                     className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      product?.status === 'Active'
+                      product?.status === 'active'
                         ? 'bg-success/20 text-success'
-                        : product?.status === 'Expiring'
-                          ? 'bg-warning/20 text-warning'
-                          : 'bg-error/20 text-error'
+                        : product?.status === 'expiring'
+                          ? ' text-warning'
+                          : 'text-error'
                     }`}
                   >
                     {product?.status?.toUpperCase()}

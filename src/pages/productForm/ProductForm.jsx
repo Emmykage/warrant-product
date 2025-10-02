@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Nav from '../../components/header/Nav'
 import { Button } from 'antd'
 import { useDispatch } from 'react-redux'
 import { createProduct, updateProduct } from '../../redux/actions/product'
@@ -64,10 +63,6 @@ export default function ProductForm({ product, setIsModalOpen }) {
           }, 1200)
         })
     }
-
-    console.log('Submitted:', formData)
-
-    // you can send formData to your backend here
   }
 
   useEffect(() => {
@@ -134,7 +129,7 @@ export default function ProductForm({ product, setIsModalOpen }) {
               >
                 <option value="">Select Status</option>
                 <option value="active">active</option>
-                <option value="inactive">inactive</option>
+                <option value="expiring">expiring</option>
               </select>
             </div>
 
